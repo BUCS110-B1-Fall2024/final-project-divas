@@ -6,13 +6,13 @@
 
 ## Team Members
 
-<< List team member names >>
+Stephania Cailin, Ava Attina
 
 ***
 
 ## Project Description
 
-<< Give an overview of your project >>
+We are planning to create a game wherein the user is able to fish from a river which contains a variety of fish. In the corner of the screen, there will be a counter displaying the number of each different kind of fish that the player has caught. The player will be able to select from different challenges, such as catching a certain number of fish within a time limit, for instance.
 
 ***    
 
@@ -30,11 +30,11 @@
 
 ### Features
 
-1. << Feature 1 >>
-2. << Feature 2 >>
-3. << Feature 3 >>
-4. << Feature 4 >>
-5. << Feature 5 >>
+1. start menu
+2. game over menu
+3. timer
+4. fish counter
+5. obstacle collisions
 
 ### Classes
 
