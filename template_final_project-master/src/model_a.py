@@ -1,5 +1,5 @@
 class Fish:
-def __init__(self, x, y, img_file):
+def __init__(self, x, y, src/fish.jpg):
 """ Initializes the object
 args:
 - x : int - randomly decides the x coordinate for each fish
