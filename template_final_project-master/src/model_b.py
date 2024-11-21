@@ -1,5 +1,5 @@
 class Fisherman:
-def __init__(self, x, y, img_file):
+def __init__(self, x, y, src/fisherman.jpg):
 """ Initializes the fisherman
 args:
 - x : int - starting x coordinate
