@@ -42,15 +42,13 @@ We are planning to create a game wherein the user is able to fish from a river w
 
 ## ATP
 
-Here is your acceptance test procedure rewritten in the specified format using dashes:
+---
+
+### Program: Mermaid Fish Collector Game 
 
 ---
 
-### **Program: Mermaid Fish Collector Game**  
-
----
-
-### **Test Case 1: Mermaid Movement**  
+### Test Case 1: Mermaid Movement  
 
 | Step |              Procedure              |                Expected Results                 |
 |------|:-----------------------------------:|-----------------------------------------------:|
