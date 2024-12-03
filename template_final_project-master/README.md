@@ -6,7 +6,7 @@
 
 ## Team Members
 
-Stephania Cailin, Ava Attina
+Stephania Calin, Ava Attina
 
 ***
 
