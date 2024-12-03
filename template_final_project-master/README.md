@@ -100,4 +100,3 @@ We are planning to create a game wherein the user is able to fish from a river w
 |  3   | Verify that the mermaid sprite moves smoothly in response to controls. | The mermaid moves smoothly in the specified direction. |
 |  4   | Check that collected fishes disappear from the screen. | Collected fishes disappear instantly from the game view. |
 |  5   | Observe the transition animations between rounds. | Smooth transition animations occur between rounds. | 
-etc...
