@@ -42,8 +42,64 @@ We are planning to create a game wherein the user is able to fish from a river w
 
 ## ATP
 
-| Step                 |Procedure             |Expected Results                   |
-|----------------------|:--------------------:|----------------------------------:|
-|  1                   | Run Counter Program  |GUI window appears with count = 0  |
-|  2                   | click count button   | display changes to count = 1      |
+Here is your acceptance test procedure rewritten in the specified format using dashes:
+
+---
+
+### **Program: Mermaid Fish Collector Game**  
+
+---
+
+### **Test Case 1: Mermaid Movement**  
+
+| Step |              Procedure              |                Expected Results                 |
+|------|:-----------------------------------:|-----------------------------------------------:|
+|  1   | Start the game.                       | The game starts with the mermaid visible.       |
+|  2   | Press the **Up** arrow key.           | The mermaid moves upward.                       |
+|  3   | Press the **Down** arrow key.         | The mermaid moves downward.                     |
+|  4   | Press the **Left** arrow key.         | The mermaid moves left.                         |
+|  5   | Press the **Right** arrow key.        | The mermaid moves right.                        |
+
+---
+
+### **Test Case 2: Fish Color Collection**  
+
+| Step |              Procedure              |                Expected Results                 |
+|------|:-----------------------------------:|-----------------------------------------------:|
+|  1   | Start the game.                      | The game starts with the mermaid visible.       |
+|  2   | Wait for the "red round" to begin.    | The round indicator displays "Red."             |
+|  3   | Use the mermaid to collide with a red fish. | The red fish is collected, and the score increases. |
+|  4   | Attempt to collide with a fish of a different color. | The non-red fish is not collected.           |
+
+---
+
+### **Test Case 3: Round Transition**  
+
+| Step |              Procedure              |                Expected Results                 |
+|------|:-----------------------------------:|-----------------------------------------------:|
+|  1   | Collect the required number of fishes in the current round (e.g., 10 red fishes). | The required fish count is reached.             |
+|  2   | Wait for the game to transition to the next round. | The game transitions smoothly to the next round. |
+|  3   | Verify that a new color is specified for the round. | The round indicator displays a new color (e.g., Blue). |
+
+---
+
+### **Test Case 4: Score and Seashell Reward**  
+
+| Step |              Procedure              |                Expected Results                 |
+|------|:-----------------------------------:|-----------------------------------------------:|
+|  1   | Collect a set number of fishes in a round (e.g., 8 fishes). | The fish collection progresses.                 |
+|  2   | Complete the round by reaching the target fish count. | The round ends, and the seashell reward is displayed. |
+|  3   | Verify that the seashell reward corresponds to the number of fishes collected. | The seashell reward accurately reflects the number of fishes collected. |
+
+---
+
+### **Test Case 5: Graphical Display and Animation**  
+
+| Step |              Procedure              |                Expected Results                 |
+|------|:-----------------------------------:|-----------------------------------------------:|
+|  1   | Start the game.                      | The game starts with the mermaid and fishes visible on the screen. |
+|  2   | Observe the animations of the fishes moving across the screen. | Fishes move smoothly across the screen.         |
+|  3   | Verify that the mermaid sprite moves smoothly in response to controls. | The mermaid moves smoothly in the specified direction. |
+|  4   | Check that collected fishes disappear from the screen. | Collected fishes disappear instantly from the game view. |
+|  5   | Observe the transition animations between rounds. | Smooth transition animations occur between rounds. | 
 etc...
