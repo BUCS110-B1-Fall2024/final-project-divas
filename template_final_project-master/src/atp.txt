@@ -1,0 +1,51 @@
+Program: "Mermaid Fish Collector Game"
+Test Case 1: Mermaid Movement
+Test Description: Verify that the mermaid can move up, down, left, and right in response to keyboard inputs.
+Test Steps:
+Start the game.
+Press the up arrow key.
+Verify that the mermaid moves upward.
+Press the down arrow key.
+Verify that the mermaid moves downward.
+Press the left arrow key.
+Verify that the mermaid moves left.
+Press the right arrow key.
+Verify that the mermaid moves right.
+Expected Outcome: The mermaid should move in the respective directions based on the arrow key inputs.
+
+Test Case 2: Fish Color Collection
+Test Description: Verify that the mermaid collects fishes matching the current round's color.
+Test Steps:
+Start the game.
+Wait for the "red round" to begin.
+Use the mermaid to collide with a red fish.
+Verify that the red fish is collected and added to the score.
+Attempt to collide with a fish of a different color.
+Verify that the non-red fish is not collected.
+Expected Outcome: Only fishes matching the current round's color are collected.
+
+Test Case 3: Round Transition
+Test Description: Verify that the game transitions to the next round with a new color.
+Test Steps:
+Collect the required number of fishes in the current round (e.g., 10 red fishes).
+Wait for the game to transition to the next round.
+Verify that a new color (e.g., blue) is specified for the round.
+Expected Outcome: The game should transition smoothly to the next round, and the new round should specify a different fish color to collect.
+
+Test Case 4: Score and Seashell Reward
+Test Description: Verify that the player earns seashells based on the number of fishes collected in a round.
+Test Steps:
+Collect a set number of fishes in a round (e.g., 8 fishes).
+Complete the round by reaching the target fish count.
+Verify that the seashell reward corresponds to the number of fishes collected.
+Expected Outcome: The seashell reward should be displayed and correspond accurately to the number of fishes collected.
+
+Test Case 5: Graphical Display and Animation
+Test Description: Verify that the graphical elements of the game are functioning as expected.
+Test Steps:
+Start the game.
+Observe the animations of the fishes moving across the screen.
+Verify that the mermaid sprite moves smoothly in response to controls.
+Check that collected fishes disappear from the screen.
+Observe the transition animations between rounds.
+Expected Outcome: All graphical elements (fishes, mermaid, animations) should display and function correctly.
