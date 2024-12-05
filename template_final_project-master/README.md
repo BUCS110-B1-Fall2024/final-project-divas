@@ -39,7 +39,10 @@ This game is about a mermaid who is attempting to catch fish with a specified co
 ### Classes
 
 #### Fish Class: Represents each fish on the screen
-
+- self.image: The 30x30 rectangle which represents the fish
+- self.rect: The rectangular boundary of the fish. When the mermaid collides with this boundary, it is detected and the mermaid will either gain or lose points.
+- self.color: The color of the fish (either red, green, or light blue)
+- update(self): The fish moves left across the screen. It will then respawn on the right if not caught.
 
 ## ATP
 
