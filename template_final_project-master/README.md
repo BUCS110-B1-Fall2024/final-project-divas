@@ -12,7 +12,7 @@ Stephania Calin, Ava Attina
 
 ## Project Description
 
-We are planning to create a game wherein the user is able to fish from a river which contains a variety of fish. In the corner of the screen, there will be a counter displaying the number of each different kind of fish that the player has caught. The player will be able to select from different challenges, such as catching a certain number of fish within a time limit, for instance.
+This game is about a mermaid who is attempting to catch fish with a specified color. On the top of the screen, there is be a counter displaying the number of fish that the player has caught. The player must avoid colliding with light blue fish, as the game will end.
 
 ***    
 
