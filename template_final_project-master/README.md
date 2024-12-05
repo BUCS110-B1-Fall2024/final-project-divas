@@ -65,9 +65,9 @@ This game is about a mermaid who is attempting to catch fish with a specified co
 | Step |              Procedure              |                Expected Results                 |
 |------|:-----------------------------------:|-----------------------------------------------:|
 |  1   | Start the game.                      | The game starts with the mermaid visible.       |
-|  2   | Wait for the "red round" to begin.    | The round indicator displays "Red."             |
+|  2   | Either "red" or "green" is specified.    | This determines the type of fish the player must collect.             |
 |  3   | Use the mermaid to collide with a red fish. | The red fish is collected, and the score increases. |
-|  4   | Attempt to collide with a fish of a different color. | The non-red fish is not collected.           |
+|  4   | Attempt to collide with a fish of a different color. | The fish is not collected.           |
 
 ---
 
@@ -77,7 +77,7 @@ This game is about a mermaid who is attempting to catch fish with a specified co
 |------|:-----------------------------------:|-----------------------------------------------:|
 |  1   | Collect the required number of fishes in the current round (e.g., 10 red fishes). | The required fish count is reached.             |
 |  2   | Wait for the game to transition to the next round. | The game transitions smoothly to the next round. |
-|  3   | Verify that a new color is specified for the round. | The round indicator displays a new color (e.g., Blue). |
+|  3   | Verify that a new color is specified for the round. | The round indicator displays a new color (e.g., Green). |
 
 ---
 
