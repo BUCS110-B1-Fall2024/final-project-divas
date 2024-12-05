@@ -38,7 +38,8 @@ This game is about a mermaid who is attempting to catch fish with a specified co
 
 ### Classes
 
-- << You should have a list of each of your classes with a description >>
+# Fish Class: Represents each fish on the screen
+
 
 ## ATP
 
