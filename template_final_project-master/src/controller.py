@@ -1,6 +1,6 @@
 import random
 import pygame
-
+import os
 
 pygame.init()
 
@@ -12,10 +12,11 @@ pygame.display.set_caption("Mermaid Fish Collector Game")
 clock = pygame.time.Clock()
 FPS = 60
 
-red = (255, 0, 0)
-green = (0, 255, 0)
-white = (255, 255, 255)
-blue = (0, 0, 255)
+Red = (255, 0, 0)
+Green = (0, 255, 0)
+White = (255, 255, 255)
+Blue = (0, 0, 255)
+Lightblue = (173, 216, 230)
 
 
 #mermaid settings
@@ -26,15 +27,25 @@ mermaid_width, mermaid_height = 100, 50
 running = True
 gameState = "start"
 
-score = 0 # the score begins at 0
+seashells = 0 # the score begins at 0
+high_score = 0
 current_round_color = red # update so this changes as the rounds progress
 required_fish = 10
 collected_fish = 0
-
+rounds_played = 0
+max_rounds = 10
 
 #fishie settings
 fish_group = pygame.sprite.Group()
 
+#this stores the high score
+high_score_file = "high_score.txt"
+
+if os.path.exists(high_score_file):
+    with open(high_score_file, "r") as file:
+        high_score = int(file.read().strip())
+else:
+    high_score = 0
 
 class Fish(pygame.sprite.Sprite):
    def __init__(self, x, y, color):
@@ -64,10 +75,13 @@ def spawnFish():
             target_fish_count += 1
         else:
             color = random.choice([red, green])
+            
+        if random.random() < 0.2: #20% chance a light blue fish/ azure fish will spawn
+            color = Lightblue
+            
         fish = Fish(x, y, color)
         fish_group.add(fish)
 spawnFish()
-
 
 def drawScreen():
     screen.fill(blue)
@@ -86,22 +100,31 @@ def pauseScreen():
 def gameOver_screen():
     screen.fill(blue)
     font = pygame.font.Font(None, 74)
-    text = font.render(f"Final Score: {score}", True, white)
+    text = font.render(f"Final Score: {seashells} Seashells", True, white)
     screen.blit(text, (screenWidth // 2 - text.get_width() // 2, screenHeight // 2 - 50))
+    
+    high_score_text = pygame.font.Font(None, 50).render(f"High Score: {high_score} Seashells", True, white)
+    screen.blit(high_score_text, (screenWidth // 2 - high_score_text.get_width() // 2, screenHeight // 2 + 50))
+
     text_restart = pygame.font.Font(None, 50).render("Press R to Restart", True, white)
-    screen.blit(text_restart, (screenWidth // 2 - text_restart.get_width() // 2, screenHeight // 2 + 50))
-
-
+    screen.blit(text_restart, (screenWidth // 2 - text_restart.get_width() // 2, screenHeight // 2 + 100))
+    
 def drawGame():
     screen.fill(blue)
     pygame.draw.rect(screen, white, (mermaid_x, mermaid_y, mermaid_width, mermaid_height)) 
     fish_group.draw(screen)
-    font = pygame.font.Font(None, 36)
+    font = pygame.font.Font(None, 30)
     color_name = "Red" if current_round_color == red else "Green"
-    text = font.render(f"Current score: {score} | You have {collected_fish}/{required_fish} fish | Round: {color_name}", True, white)
+    text = font.render(f"Current score: {seashells} | Your target is: {collected_fish}/{required_fish} | Round: {color_name} | Round #: {rounds_played}/{max_rounds}", True, white)
     screen.blit(text, (10, 10))
 
-
+def update_high_score():
+    global high_score
+    if seashells > high_score:
+        high_score = seashells
+        with open(high_score_file, "w") as file:
+            file.write(str(high_score))
+        
 #main game loop
 while running:
     for event in pygame.event.get():
@@ -116,11 +139,11 @@ while running:
                 gameState = "pause"
             if gameState == "game_over" and event.key == pygame.K_r:
                 gameState = "start"
-                score = 0
+                seashells = 0
                 collected_fish = 0
+                rounds_played = 0
                 fish_group.empty()
                 spawnFish()
-
 
 #mermaid movement on the keyboard
     keys = pygame.key.get_pressed()
@@ -129,44 +152,55 @@ while running:
             mermaid_y -= mermaidSpeed
         if keys[pygame.K_DOWN] and mermaid_y < screenHeight - mermaid_height:
             mermaid_y += mermaidSpeed
-        if keys[pygame.K_LEFT] and mermaid_x > 0:
-            mermaid_x -= mermaidSpeed
-        if keys[pygame.K_RIGHT] and mermaid_x < screenWidth - mermaid_width:
-            mermaid_x += mermaidSpeed
+        #if keys[pygame.K_LEFT] and mermaid_x > 0:
+            #mermaid_x -= mermaidSpeed
+        #if keys[pygame.K_RIGHT] and mermaid_x < screenWidth - mermaid_width:
+            #mermaid_x += mermaidSpeed
         fish_group.update()
+        
         for fish in fish_group:
             if pygame.Rect(mermaid_x, mermaid_y, mermaid_width, mermaid_height).colliderect(fish.rect):
-                if fish.color == current_round_color:
-                    score += 1
+                if fish.color == Lightblue:
+                    seashells -= 2
+                    print(f"Wrong fish! You lost 2 seashells! Now you only have {seashells} seashells.")
+                    fish.kill()
+                elif fish.color == current_round_color:
+                    seashells += 1
                     collected_fish += 1
                     fish.kill()
                     print(f"Fish collected: {collected_fish}/{required_fish}")
                 else:
+                    seashells -= 1
                     print("Wrong color!")
+                    fish.kill()
 
-                #respawn fish if there are not enough
+                # Respawn fish if needed
                 if len(fish_group) < 10:
                     spawnFish()
 
-   #keeping track of the users actions/if they are collecting the correct fish
+   #keeping track of the users actions
     if gameState == "active":
         fish_group.update()
         for fish in fish_group:
             if pygame.Rect(mermaid_x, mermaid_y, mermaid_width, mermaid_height).colliderect(fish.rect):
                 if fish.color == current_round_color:
-                    score += 1
+                    seashells += 1
                     collected_fish += 1
                     fish.kill()
                 else:
                     print("Wrong color!")
-        #checks round completion
+                    
+        #checking round completion
         if collected_fish >= required_fish:
             collected_fish = 0
             current_round_color = random.choice([red, green]) #gives new target color
             fish_group.empty()
             spawnFish()
             print("New round started!")
-
+            rounds_played += 1
+            if rounds_played >= max_rounds:
+                gameState = "game_over"
+                update_high_score()
 
     if gameState == "start":
         drawScreen()
