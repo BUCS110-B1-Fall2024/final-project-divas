@@ -38,6 +38,9 @@ This game is about a mermaid who is attempting to catch fish with a specified co
 
 ### Classes
 
+### Mermaid Class: Represents the mermaid
+- 
+
 #### Fish Class: Represents each fish on the screen
 - self.image: The 30x30 rectangle which represents the fish
 - self.rect: The rectangular boundary of the fish. When the mermaid collides with this boundary, it is detected and the mermaid will either gain or lose points.
@@ -70,7 +73,7 @@ This game is about a mermaid who is attempting to catch fish with a specified co
 |------|:-----------------------------------:|-----------------------------------------------:|
 |  1   | Start the game.                      | The game starts with the mermaid visible.       |
 |  2   | Either "red" or "green" is specified.    | This determines the type of fish the player must collect.             |
-|  3   | Use the mermaid to collide with a red fish. | The red fish is collected, and the score increases. |
+|  3   | Use the mermaid to collide with a fish of the specified color. | That fish is collected, and the score increases. |
 |  4   | Attempt to collide with a fish of a different color. | The fish is not collected.           |
 
 ---
