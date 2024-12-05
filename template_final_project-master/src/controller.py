@@ -29,7 +29,7 @@ gameState = "start"
 
 seashells = 0 # the score begins at 0
 high_score = 0
-current_round_color = red # update so this changes as the rounds progress
+current_round_color = Red # update so this changes as the rounds progress
 required_fish = 10
 collected_fish = 0
 rounds_played = 0
@@ -74,7 +74,7 @@ def spawnFish():
             color = current_round_color
             target_fish_count += 1
         else:
-            color = random.choice([red, green])
+            color = random.choice([Red, Green])
             
         if random.random() < 0.2: #20% chance a light blue fish/ azure fish will spawn
             color = Lightblue
@@ -84,38 +84,38 @@ def spawnFish():
 spawnFish()
 
 def drawScreen():
-    screen.fill(blue)
+    screen.fill(Blue)
     font = pygame.font.Font(None, 74)
-    text = font.render("Press SPACE To Begin:", True, white)
+    text = font.render("Press SPACE To Begin:", True, White)
     screen.blit(text, (screenWidth // 2 - text.get_width() // 2, screenHeight // 2 - 50))
 
 
 def pauseScreen():
-    screen.fill(blue)
+    screen.fill(Blue)
     font = pygame.font.Font(None, 74)
-    text = font.render("Game Paused", True, white)
+    text = font.render("Game Paused", True, White)
     screen.blit(text, (screenWidth // 2 - text.get_width() // 2, screenHeight // 2 - 50))
 
 
 def gameOver_screen():
-    screen.fill(blue)
+    screen.fill(Blue)
     font = pygame.font.Font(None, 74)
-    text = font.render(f"Final Score: {seashells} Seashells", True, white)
+    text = font.render(f"Final Score: {seashells} Seashells", True, White)
     screen.blit(text, (screenWidth // 2 - text.get_width() // 2, screenHeight // 2 - 50))
     
-    high_score_text = pygame.font.Font(None, 50).render(f"High Score: {high_score} Seashells", True, white)
+    high_score_text = pygame.font.Font(None, 50).render(f"High Score: {high_score} Seashells", True, White)
     screen.blit(high_score_text, (screenWidth // 2 - high_score_text.get_width() // 2, screenHeight // 2 + 50))
 
-    text_restart = pygame.font.Font(None, 50).render("Press R to Restart", True, white)
+    text_restart = pygame.font.Font(None, 50).render("Press R to Restart", True, White)
     screen.blit(text_restart, (screenWidth // 2 - text_restart.get_width() // 2, screenHeight // 2 + 100))
     
 def drawGame():
-    screen.fill(blue)
-    pygame.draw.rect(screen, white, (mermaid_x, mermaid_y, mermaid_width, mermaid_height)) 
+    screen.fill(Blue)
+    pygame.draw.rect(screen, White, (mermaid_x, mermaid_y, mermaid_width, mermaid_height)) 
     fish_group.draw(screen)
     font = pygame.font.Font(None, 30)
-    color_name = "Red" if current_round_color == red else "Green"
-    text = font.render(f"Current score: {seashells} | Your target is: {collected_fish}/{required_fish} | Round: {color_name} | Round #: {rounds_played}/{max_rounds}", True, white)
+    color_name = "Red" if current_round_color == Red else "Green"
+    text = font.render(f"Current score: {seashells} | Your target is: {collected_fish}/{required_fish} | Round: {color_name} | Round #: {rounds_played}/{max_rounds}", True, White)
     screen.blit(text, (10, 10))
 
 def update_high_score():
@@ -193,7 +193,7 @@ while running:
         #checking round completion
         if collected_fish >= required_fish:
             collected_fish = 0
-            current_round_color = random.choice([red, green]) #gives new target color
+            current_round_color = random.choice([Red, Green]) #gives new target color
             fish_group.empty()
             spawnFish()
             print("New round started!")
