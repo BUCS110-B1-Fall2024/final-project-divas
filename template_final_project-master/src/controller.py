@@ -1,10 +1,9 @@
 import random
 import pygame
 import os
-from fish import Fish
-from mermaid import Mermaid
 
 pygame.init()
+
 
 #what the screen will look like
 screenWidth, screenHeight = 800, 600
@@ -19,6 +18,44 @@ Green = (0, 255, 0)
 White = (255, 255, 255)
 Blue = (0, 0, 255)
 Lightblue = (173, 216, 230)
+
+class Mermaid:
+    """
+    Represents the mermaid
+    x(int): The mermaid's x-coordinates
+    y(int): The mermaid's y-coordinates
+    width(int): The width of the mermaid
+    height(int): The height of the mermaid
+    speed(int): How fast the mermaid moves
+    rect(pygame.Rect): The rectangle representing the mermaid's position
+    
+    """
+    def __init__(self, x, y, width, height, speed):
+        """
+        Initializes the mermaid
+        x(int): The mermaid's starting x-coordinate
+        y(int): The mermaid's starting y-coordinate
+        width(int): The mermaid's width
+        height(int): The mermaid's height
+        speed(int): The mermaid's speed
+        """
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.speed = speed
+        self.rect = pygame.Rect(x, y, width, height)
+    
+    def move(self,keys):
+        """
+        Updates the mermaid's on screen position
+        keys(dict): Different key states (up, down) from the pygame dictionary
+        """
+        if keys[pygame.K_UP] and self.y > 0:
+            self.y -= self.speed
+        if keys[pygame.K_DOWN] and self.y < screenHeight - self.height:
+            self.y += self.speed
+        self.rect.update(self.x, self.y, self.width, self.height)
 
 mermaid = Mermaid(screenWidth//2, screenHeight//2, 70, 50, 5)
 
@@ -44,6 +81,36 @@ if os.path.exists(high_score_file):
         high_score = int(file.read().strip())
 else:
     high_score = 0
+
+class Fish(pygame.sprite.Sprite):
+    """
+    Represents the fish
+    image(pygame.Surface): The red, green, and light blue rectangles which represent the fish
+    rect(pygame.Rect): The rectangle representing the fish
+    color(tuple): The color (Red/Green/Light Blue) of the fish
+    """
+    def __init__(self, x, y, color):
+       """
+       Initializes the fish
+       x(int): The starting x-coordinate of the fish
+       y(int): The starting y-coordinate of the fish
+       color(tuple): The color of the fish
+       """
+       super().__init__()
+       self.image = pygame.Surface((30, 30))
+       self.image.fill(color)
+       self.rect = self.image.get_rect()
+       self.rect.x = x
+       self.rect.y = y
+       self.color = color
+
+
+    def update(self):
+       self.rect.x -= 2  # Move fish left
+       if self.rect.x < -30:  # Reset fish if it goes off-screen
+           self.rect.x = screenWidth + random.randint(0, 200)
+           self.rect.y = random.randint(0, screenHeight - 30)
+
 
 def spawnFish():
     """
