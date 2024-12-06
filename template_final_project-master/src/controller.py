@@ -18,17 +18,6 @@ Green = (0, 255, 0)
 White = (255, 255, 255)
 Blue = (0, 0, 255)
 Lightblue = (173, 216, 230)
-    
-    def move(self,keys):
-        """
-        Updates the mermaid's on screen position
-        keys(dict): Different key states (up, down) from the pygame dictionary
-        """
-        if keys[pygame.K_UP] and self.y > 0:
-            self.y -= self.speed
-        if keys[pygame.K_DOWN] and self.y < screenHeight - self.height:
-            self.y += self.speed
-        self.rect.update(self.x, self.y, self.width, self.height)
 
 mermaid = Mermaid(screenWidth//2, screenHeight//2, 70, 50, 5)
 
