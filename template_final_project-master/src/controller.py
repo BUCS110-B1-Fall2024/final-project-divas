@@ -1,6 +1,8 @@
 import random
 import pygame
 import os
+from fish import Fish
+from mermaid import Mermaid
 
 pygame.init()
 
