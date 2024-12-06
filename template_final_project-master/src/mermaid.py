@@ -24,3 +24,15 @@ class Mermaid:
         self.height = height
         self.speed = speed
         self.rect = pygame.Rect(x, y, width, height)
+        
+    def move(self,keys):
+        """
+        Updates the mermaid's on screen position
+        keys(dict): Different key states (up, down) from the pygame dictionary
+        """
+        if keys[pygame.K_UP] and self.y > 0:
+            self.y -= self.speed
+        if keys[pygame.K_DOWN] and self.y < screenHeight - self.height:
+            self.y += self.speed
+        self.rect.update(self.x, self.y, self.width, self.height)
+
