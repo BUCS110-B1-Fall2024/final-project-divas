@@ -1,6 +1,4 @@
 
-:warning: Everything between << >> needs to be replaced (remove << >> after replacing)
-
 # Mermaid Fish Collector Game
 ## CS110 B1 Final Project Fall 2024
 
