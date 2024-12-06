@@ -19,7 +19,24 @@ Blue = (0, 0, 255)
 Lightblue = (173, 216, 230)
 
 class Mermaid:
+    """
+    Represents the mermaid
+    x(int): The mermaid's x-coordinates
+    y(int): The mermaid's y-coordinates
+    width(int): The width of the mermaid
+    height(int): The height of the mermaid
+    speed(int): How fast the mermaid moves
+    rect(pygame.Rect): The rectangle representing the mermaid's position
+    """
     def __init__(self, x, y, width, height, speed):
+        """
+        Initializes the mermaid
+        x(int): The mermaid's starting x-coordinate
+        y(int): The mermaid's starting y-coordinate
+        width(int): The mermaid's width
+        height(int): The mermaid's height
+        speed(int): The mermaid's speed
+        """
         self.x = x
         self.y = y
         self.width = width
@@ -28,6 +45,10 @@ class Mermaid:
         self.rect = pygame.Rect(x, y, width, height)
     
     def move(self,keys):
+        """
+        Updates the mermaid's on screen position
+        keys(dict): Different key states (up, down) from the pygame dictionary
+        """
         if keys[pygame.K_UP] and self.y > 0:
             self.y -= self.speed
         if keys[pygame.K_DOWN] and self.y < screenHeight - self.height:
@@ -60,7 +81,19 @@ else:
     high_score = 0
 
 class Fish(pygame.sprite.Sprite):
+    """
+    Represents the fish
+    image(pygame.Surface): The red, green, and light blue rectangles which represent the fish
+    rect(pygame.Rect): The rectangle representing the fish
+    color(tuple): The color (Red/Green/Light Blue) of the fish
+    """
    def __init__(self, x, y, color):
+       """
+       Initializes the fish
+       x(int): The starting x-coordinate of the fish
+       y(int): The starting y-coordinate of the fish
+       color(tuple): The color of the fish
+       """
        super().__init__()
        self.image = pygame.Surface((30, 30))
        self.image.fill(color)
@@ -78,6 +111,9 @@ class Fish(pygame.sprite.Sprite):
 
 
 def spawnFish():
+    """
+    Spawns fish on the right side of the screen. There will be a variety of the three possible color fish.
+    """
     target_fish_count = 0
     for _ in range(10):  # begins with 10 fish on the screen
         x = random.randint(screenWidth, screenWidth + 200)
@@ -96,6 +132,9 @@ def spawnFish():
 spawnFish()
 
 def drawScreen():
+    """
+    Draws the game's starting screen. The user must press SPACE to begin.
+    """
     screen.fill(Blue)
     font = pygame.font.Font(None, 74)
     text = font.render("Press SPACE To Begin:", True, White)
@@ -103,6 +142,9 @@ def drawScreen():
 
 
 def pauseScreen():
+    """
+    Draws the pause screen
+    """
     screen.fill(Blue)
     font = pygame.font.Font(None, 74)
     text = font.render("Game Paused", True, White)
@@ -110,6 +152,9 @@ def pauseScreen():
 
 
 def gameOver_screen():
+    """
+    Draws the game over screen after 10 rounds. The user's final score and high score are displayed. Their high score carries across different game sessions
+    """
     screen.fill(Blue)
     font = pygame.font.Font(None, 74)
     text = font.render(f"Final Score: {seashells} Seashells", True, White)
@@ -122,6 +167,9 @@ def gameOver_screen():
     screen.blit(text_restart, (screenWidth // 2 - text_restart.get_width() // 2, screenHeight // 2 + 100))
     
 def drawGame():
+    """
+    Draws the game screen, fish, mermaid, and displays the user's score
+    """
     screen.fill(Blue)
     pygame.draw.rect(screen, White, mermaid.rect) 
     fish_group.draw(screen)
@@ -132,6 +180,9 @@ def drawGame():
 
 #high score
 def update_high_score():
+    """
+    Updates the user's high score if they beat it. This is then saved to file
+    """
     global high_score
     if seashells > high_score:
         high_score = seashells
