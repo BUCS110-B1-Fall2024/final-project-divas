@@ -12,6 +12,7 @@ pygame.display.set_caption("Mermaid Fish Collector Game")
 clock = pygame.time.Clock()
 FPS = 60
 
+#constants of different colors
 Red = (255, 0, 0)
 Green = (0, 255, 0)
 White = (255, 255, 255)
@@ -44,8 +45,6 @@ class Mermaid:
         self.height = height
         self.speed = speed
         self.rect = pygame.Rect(x, y, width, height)
-        self.image = pygame.image.load("mermaid.png")
-        self.image = pygame.transform.scale(self.image, (width, height))
     
     def move(self,keys):
         """
@@ -90,7 +89,7 @@ class Fish(pygame.sprite.Sprite):
     rect(pygame.Rect): The rectangle representing the fish
     color(tuple): The color (Red/Green/Light Blue) of the fish
     """
-   def __init__(self, x, y, color):
+    def __init__(self, x, y, color):
        """
        Initializes the fish
        x(int): The starting x-coordinate of the fish
@@ -106,7 +105,7 @@ class Fish(pygame.sprite.Sprite):
        self.color = color
 
 
-   def update(self):
+    def update(self):
        self.rect.x -= 2  # Move fish left
        if self.rect.x < -30:  # Reset fish if it goes off-screen
            self.rect.x = screenWidth + random.randint(0, 200)
@@ -174,7 +173,7 @@ def drawGame():
     Draws the game screen, fish, mermaid, and displays the user's score
     """
     screen.fill(Blue)
-    screen.blit(mermaid.image, (mermaid.x, mermaid.y)) 
+    pygame.draw.rect(screen, White, mermaid.rect) 
     fish_group.draw(screen)
     font = pygame.font.Font(None, 30)
     color_name = "Red" if current_round_color == Red else "Green"
@@ -276,7 +275,7 @@ while running:
     clock.tick(FPS)
 
 pygame.quit()
-    pygame.display.flip()
-    clock.tick(FPS)
+pygame.display.flip()
+clock.tick(FPS)
 
 pygame.quit()
