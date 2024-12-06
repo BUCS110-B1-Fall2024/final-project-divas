@@ -18,11 +18,23 @@ White = (255, 255, 255)
 Blue = (0, 0, 255)
 Lightblue = (173, 216, 230)
 
+class Mermaid:
+    def __init__(self, x, y, width, height, speed):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.speed = speed
+        self.rect = pygame.Rect(x, y, width, height)
+    
+    def move(self,keys):
+        if keys[pygame.K_UP] and self.y > 0:
+            self.y -= self.speed
+        if keys[pygame.K_DOWN] and self.y < screenHeight - self.height:
+            self.y += self.speed
+        self.rect.update(self.x, self.y, self.width, self.height)
 
-#mermaid settings
-mermaid_x, mermaid_y = screenWidth // 2, screenHeight // 2
-mermaidSpeed = 5
-mermaid_width, mermaid_height = 100, 50
+mermaid = Mermaid(screenWidth//2, screenHeight//2, 70, 50, 5)
 
 running = True
 gameState = "start"
@@ -111,13 +123,14 @@ def gameOver_screen():
     
 def drawGame():
     screen.fill(Blue)
-    pygame.draw.rect(screen, White, (mermaid_x, mermaid_y, mermaid_width, mermaid_height)) 
+    pygame.draw.rect(screen, White, mermaid.rect) 
     fish_group.draw(screen)
     font = pygame.font.Font(None, 30)
     color_name = "Red" if current_round_color == Red else "Green"
     text = font.render(f"Current score: {seashells} | Your target is: {collected_fish}/{required_fish} | Round: {color_name} | Round #: {rounds_played}/{max_rounds}", True, White)
     screen.blit(text, (10, 10))
 
+#high score
 def update_high_score():
     global high_score
     if seashells > high_score:
@@ -148,18 +161,11 @@ while running:
 #mermaid movement on the keyboard
     keys = pygame.key.get_pressed()
     if gameState == "active":
-        if keys[pygame.K_UP] and mermaid_y > 0:
-            mermaid_y -= mermaidSpeed
-        if keys[pygame.K_DOWN] and mermaid_y < screenHeight - mermaid_height:
-            mermaid_y += mermaidSpeed
-        #if keys[pygame.K_LEFT] and mermaid_x > 0:
-            #mermaid_x -= mermaidSpeed
-        #if keys[pygame.K_RIGHT] and mermaid_x < screenWidth - mermaid_width:
-            #mermaid_x += mermaidSpeed
+        mermaid.move(keys)
         fish_group.update()
         
         for fish in fish_group:
-            if pygame.Rect(mermaid_x, mermaid_y, mermaid_width, mermaid_height).colliderect(fish.rect):
+            if mermaid.rect.colliderect(fish.rect):
                 if fish.color == Lightblue:
                     seashells -= 2
                     print(f"Wrong fish! You lost 2 seashells! Now you only have {seashells} seashells.")
@@ -182,7 +188,7 @@ while running:
     if gameState == "active":
         fish_group.update()
         for fish in fish_group:
-            if pygame.Rect(mermaid_x, mermaid_y, mermaid_width, mermaid_height).colliderect(fish.rect):
+            if mermaid.rect.colliderect(fish.rect):
                 if fish.color == current_round_color:
                     seashells += 1
                     collected_fish += 1
@@ -212,6 +218,10 @@ while running:
         gameOver_screen()
 
 
+    pygame.display.flip()
+    clock.tick(FPS)
+
+pygame.quit()
     pygame.display.flip()
     clock.tick(FPS)
 
