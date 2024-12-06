@@ -27,6 +27,7 @@ class Mermaid:
     height(int): The height of the mermaid
     speed(int): How fast the mermaid moves
     rect(pygame.Rect): The rectangle representing the mermaid's position
+    
     """
     def __init__(self, x, y, width, height, speed):
         """
@@ -43,6 +44,8 @@ class Mermaid:
         self.height = height
         self.speed = speed
         self.rect = pygame.Rect(x, y, width, height)
+        self.image = pygame.image.load("mermaid.png")
+        self.image = pygame.transform.scale(self.image, (width, height))
     
     def move(self,keys):
         """
@@ -171,7 +174,7 @@ def drawGame():
     Draws the game screen, fish, mermaid, and displays the user's score
     """
     screen.fill(Blue)
-    pygame.draw.rect(screen, White, mermaid.rect) 
+    screen.blit(mermaid.image, (mermaid.x, mermaid.y)) 
     fish_group.draw(screen)
     font = pygame.font.Font(None, 30)
     color_name = "Red" if current_round_color == Red else "Green"
