@@ -1,7 +1,7 @@
 
 :warning: Everything between << >> needs to be replaced (remove << >> after replacing)
 
-# << Project Title >>
+# Mermaid Fish Collector Game
 ## CS110 B1 Final Project Fall 2024
 
 ## Team Members
@@ -39,7 +39,13 @@ This game is about a mermaid who is attempting to catch fish with a specified co
 ### Classes
 
 ### Mermaid Class: Represents the mermaid
-- 
+Represents the mermaid
+- x(int): The mermaid's x-coordinates
+- y(int): The mermaid's y-coordinates
+- width(int): The width of the mermaid
+- height(int): The height of the mermaid
+- speed(int): How fast the mermaid moves
+- rect(pygame.Rect): The rectangle representing the mermaid's position
 
 #### Fish Class: Represents each fish on the screen
 - self.image: The 30x30 rectangle which represents the fish
